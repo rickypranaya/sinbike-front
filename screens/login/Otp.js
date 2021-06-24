@@ -23,7 +23,7 @@ const Otp = props=>{
 
 
     const addUser = async ()=>{
-        const URL = Constant.BASE_URL+"/api/users_add";
+        const URL = Constant.BASE_URL+"/users_add";
 
         try{
             const response = await fetch(URL, {
