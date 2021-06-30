@@ -15,8 +15,10 @@ import Riding from "../../screens/ride/Riding";
 import EndTrip from "../../screens/ride/EndTrip";
 import ScanParking from "../../screens/ride/ScanParking";
 import TripInfo from "../../screens/ride/TripInfo";
-import Wallet from "../../screens/ride/drawer/Wallet";
-import Profile from "../../screens/ride/drawer/Profile";
+import Wallet from "../../screens/drawer/Wallet";
+import Profile from "../../screens/drawer/Profile";
+import Contact from "../../screens/drawer/Contact";
+import Constant from "../Constants";
 
 
 const Navigator = createStackNavigator({
@@ -34,6 +36,9 @@ const Navigator = createStackNavigator({
     endTrip:EndTrip,
     scanParking:ScanParking,
     tripInfo: TripInfo,
+    wallet: Wallet,
+    profile: Profile,
+    contact: Contact,
 },
 {
   headerMode: 'none',

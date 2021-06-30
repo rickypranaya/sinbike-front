@@ -13,7 +13,7 @@ const CheckBike = props=>{
         setTimeout(()=>{ setCheck(false)}, 1000);
         //setTimeout(()=>{ alert('hello')}, 1000);
         
-     });
+     },[]);
 
      const resetStack = (screen) => {
         props
