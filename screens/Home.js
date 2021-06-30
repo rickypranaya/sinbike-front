@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet, TextInput, Image, TouchableOpacity, Alert, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import Constant from '../components/Constants';
 import MapView, { Marker } from 'react-native-maps';
@@ -13,9 +13,16 @@ const Home = props=>{
     const [search, setSearch] = useState('');
     const [isModalVisible, setModalVisible] = useState(false)
 
-    const drawerItems =(iconName, iconType, size, title, value)=>{
+    useEffect(() => {
+        const drawer = props.navigation.getParam('drawer', '0')
+        if (drawer != 0) {
+          setModalVisible(true)
+        }
+      }, []);
+
+    const drawerItems =(onPress, iconName, iconType, size, title, value)=>{
         return(
-        <View style={{flexDirection:'row', alignItems:'center', height:50, paddingHorizontal:30, justifyContent:'space-between' }}>
+        <TouchableOpacity onPress={()=>{onPress()}} style={{flexDirection:'row', alignItems:'center', height:50, paddingHorizontal:30, justifyContent:'space-between' }}>
             <View style={{flexDirection:'row', alignItems:'center'}}>
                 <Icon
                     // reverse
@@ -27,8 +34,13 @@ const Home = props=>{
                 <Text style={{paddingLeft:10, fontWeight:'600'}}>{title}</Text>
             </View>
             <Text style={{paddingLeft:20}}>{value}</Text>
-        </View>
+        </TouchableOpacity>
         )
+    }
+
+    const onDrawerClick = (screen)=>{
+        setModalVisible(false)
+        props.navigation.navigate('contact')
     }
 
     return(
@@ -146,11 +158,11 @@ const Home = props=>{
                     </View>
                 </View>
 
-                {drawerItems('user-circle', 'font-awesome', 25,'Profile', )}
-                {drawerItems('wallet-outline', 'material-community',27,'E-Wallet', 'S$50.00')}
-                {drawerItems('history', 'material', 28,'Trip History', )}
-                {drawerItems('message1', 'ant-design', 23,'Messages', )}
-                {drawerItems('customerservice', 'ant-design', 23,'Contact us', )}                
+                {drawerItems(()=>{Alert.alert('test')},'user-circle', 'font-awesome', 25,'Profile', )}
+                {drawerItems(()=>{Alert.alert('test')},'wallet-outline', 'material-community',27,'E-Wallet', 'S$50.00')}
+                {drawerItems(()=>{Alert.alert('test')},'history', 'material', 28,'Trip History', )}
+                {drawerItems(()=>{Alert.alert('test')},'message1', 'ant-design', 23,'Messages', )}
+                {drawerItems(onDrawerClick.bind(this,'contact'),'customerservice', 'ant-design', 23,'Contact us', )}                
             </View>
             </Modal>
 
